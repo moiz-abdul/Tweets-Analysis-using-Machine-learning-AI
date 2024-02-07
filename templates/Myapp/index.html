@@ -1,0 +1,781 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+ 
+<!-- Head Section content -->
+<head>
+ 
+        <!-- Include Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Home Page </title>
+
+
+    <style>
+
+        
+        body
+        {
+            background-color:#EBF5FB;
+        }
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .section {
+            padding-top: 20px; /* Adjust the top padding to create space */
+        }
+
+        .mynavbar
+        {
+            background-color: #7FB3D5 !important;
+            
+        }
+
+        .nav-link
+        {
+            color: #FFFFFF !important;
+        }
+
+        .nav-link:hover
+        {
+            color: #17BF63 !important;
+        }
+
+        .btn-navbar
+        {
+            background-color: #17BF63;
+        }
+        .carousel-item {
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust the height as needed */
+        }
+
+                /* Carousel Images */
+        .carousel-item img {
+            box-shadow: 2px 2px 5px #888888; /* Add a subtle shadow */
+        }
+        
+
+        .carousel-caption {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Custom CSS for styling the round boxes */
+        .how-we-work {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .how-we-work-cotainer
+        {
+            background-color: #F5F8FA;
+            
+        }
+
+        .how-we-work h2 {
+            margin-bottom: 30px;
+            color: #333333 !important;
+        }
+
+        .how-we-work .row { 
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .how-we-work .row p{ 
+            color:#17BF63 !important;
+        }
+
+        .how-we-work .col {
+            text-align: center;
+            flex: 0 0 calc(33.333% - 20px);
+            background-color: #D5D8DC;
+            border-radius: 10%;
+            padding: 20px;
+            margin: 10px;
+        }
+        
+        /* Styles for the back-to-top button */
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+        }
+
+        .signin-btn
+        {
+            margin-left: 10px
+        }
+
+        .signup-btn
+        {
+            margin-left: 12px;
+        }
+
+        /* Add custom CSS to style the active link */
+        .nav-link.active::after {
+            content: "";
+            display: block;
+            height: 3px;
+            background-color: blue;
+        }
+
+        .calltoaction-btn
+        {
+            margin-top: 0%;
+            margin-left: 48%;
+        }
+        .calltoaction
+        {
+            padding: 10px;
+        }
+
+        .about-container
+        {
+            background-color: #F5F5F5;
+        }
+        
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: 2px 2px 5px #ABB2B9; /* Adjust the color and opacity here */
+            pointer-events: none; /* Allow clicks to pass through the overlay */
+          }
+          .get-started-button {
+            position: absolute;
+            top: 50%; /* Vertically centered */
+            left: 50%; /* Horizontally centered */
+            transform: translate(-50%, -50%);
+          }
+
+          .about-img
+          {
+            margin-top: 10px;
+            margin-left: 70px;
+            border-radius: 10px;
+            border: 5px solid #BABABA;
+          }
+
+          .team-profile {
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            width: 200px;
+            height: 200px;
+            margin-left: 170px;
+            margin-top: 30px
+          }
+          
+        .team-card
+        {
+            border: 3px solid #3498DB;
+        }
+
+        .team-card img
+        {
+            border: 5px solid #AAB7B8;
+        }
+        .contact-form{
+            background: #5AC66A;
+            border-radius: 10px;
+            margin-top: 10%;
+            margin-bottom: 5%;
+            width: 70%;
+            background: -webkit-linear-gradient(left, #5AC66A, #62A06B);
+        }
+        .contact-form .form-control{
+            border-radius:1rem;
+        }
+        .contact-image{
+            text-align: center;
+        }
+        .contact-image img{
+            border-radius: 6rem;
+            width: 11%;
+            margin-top: -3%;
+            transform: rotate(29deg);
+            border: 5px solid #1B6826;
+        }
+        .contact-form form{
+            padding: 14%;
+        }
+        .contact-form form .row{
+            margin-bottom: -7%;
+        }
+        .contact-form h3{
+            margin-bottom: 8%;
+            margin-top: -10%;
+            text-align: center;
+            color: #BFECC5;
+        }
+        .contact-form .btnContact {
+            width: 50%;
+            border: none;
+            border-radius: 1rem;
+            padding: 1.5%;
+            background: #1B6826;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+        }
+        .btnContactSubmit
+        {
+            width: 50%;
+            border-radius: 1rem;
+            padding: 1.5%;
+            color: #fff;
+            background-color: #BFECC5;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-form-feilds
+        {
+            margin-top: 10px;
+            border: 2px solid #1B6826;
+            border-radius: 2rem;
+        }
+
+        .contact-form-button
+        {
+            margin-top: 10px;
+            
+        }
+
+        .footer
+        {
+            color: white;
+        }
+        
+        .twitter-handle
+        {
+            height: 30px;
+            width: 30px;
+            color: blue;
+            margin-left: 5px;
+            
+        }
+        .facebook-handle
+        {
+            height: 30px;
+            width: 30px;
+            margin-left: 5px;
+        }
+
+        .instagram-handle
+        {
+            height: 30px;
+            width: 30px;
+            margin-left: 5px;
+        }
+
+        .linkedin-handle
+        {
+            height: 30px;
+            width: 30px;
+            margin-left: 5px;
+        }
+
+        .skype-handle
+        {
+            height: 30px;
+            width: 30px;
+            margin-left: 5px;
+        }
+
+        .register-button
+        {
+            background-color: #D6DBDF;
+            border: 2px solid #184B6C;
+            
+        }
+
+        .register-text
+        {
+            color: #184B6C !important;
+        }
+        
+    </style>
+
+</head>
+ 
+<!-- Body Section content -->
+<body>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary mynavbar">
+    <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+        <img src="{% static 'Images/TwitterLogo.png' %}" alt="Logo" width="70" height="40">
+    </a>
+      
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#howwework" id="howwework-link">How we work</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#about" id="about-link">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#services" id="services-link">Services</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#team" id="team-link">Team</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#contact" id="contact-link">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'faqs'%}">FAQ's</a>
+        </li>  
+        </ul>
+        <form class="d-flex" role="Registeration">
+          <button class="btn btn-primary signin-btn btn-navbar register-button" type="submit"><a href="{% url 'signin'%} " class="register-text" style="text-decoration:none;">Log In</a></button>
+          <button class="btn btn-success signup-btn btn-navbar register-button" type="submit"><a href="{% url 'signup'%}" class="register-text" style="text-decoration:none;">Sign Up</a></button>
+        </form>
+      </div>
+    </div>
+  </nav> 
+
+  
+<script>
+    // Add a click event listener to each nav link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            // Remove the 'active' class from all links
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            // Add the 'active' class to the clicked link
+            link.classList.add('active');
+        });
+    });
+</script>
+      <!-- NAVBAR End -->
+
+{% comment %}      
+<section>
+
+    <div id="imageCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active" style="background-image: url('image1.jpg');">
+                <div class="carousel-caption">
+                    <h3>Slide 1</h3>
+                    <p>Some static text here.</p>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+            </div> {% endcomment %}
+{% comment %}     
+            <!-- Slide 2 -->
+            <div class="carousel-item" style="background-image: url('image2.jpg');">
+                <div class="carousel-caption">
+                    <h3>Slide 2</h3>
+                    <p>Some more static text here.</p>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+     {% endcomment %}
+            {% comment %} <!-- Slide 3 -->
+            <div class="carousel-item" style="background-image: url('image3.jpg');">
+                <div class="carousel-caption">
+                    <h3>Slide 3</h3>
+                    <p>Even more static text here.</p>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Controls (Next and Previous) -->
+        <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</section> {% endcomment %}
+
+    <!-- Crousel END -->
+
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="{% static 'Images/img1.png' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="{% static 'Images/img2.png' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'Images/img3.png' %}" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <div class="carousel-overlay"></div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+        <div class="get-started-button">
+            <button class="btn btn-light " ><a href="{% url 'signin'%}" style="width: 164px; height: 45px; text-decoration: none; color:black;">Get Started</a></button>
+          </div>
+      </div>
+
+    <!-- How we work Section START -->
+
+{% comment %} <section class="container-fluid section"  > {% endcomment %}
+
+    <div class="container-fluid how-we-work-cotainer" id="howwework">
+        <div class="how-we-work">
+            <h2 style="color:#333333;">How It Work</h2>
+            <div class="row">
+                <div class="col">
+                    <h4>Step 1</h4>
+                    <p>Sign-In with your account</p>
+                </div>
+                <div class="col">
+                    <h4>Step 2</h4>
+                    <p>Select Tweet from your selected Hashtag or Keyword</p>
+                </div>
+                <div class="col">
+                    <h4>Step 3</h4>
+                    <p>Check the Tweet report, It's Fake or Real</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% comment %} </section> {% endcomment %}
+
+<!-- How We work  Section END -->
+
+
+<!-- About Us Section START -->
+
+{% comment %} <section id="about" class="container-fluid section"> {% endcomment %}
+
+<div class="container-fluid text-center about-container">
+    <br><br><h2>About Us</h2><br><br>
+    <div class="row">
+        <!-- Text Container -->
+        <div class="col-md-6">
+            <p style="text-align:left; display: flex; justify-content: center;">At the heart of the Tweets Analyzer Project lies a passionate team dedicated to unraveling the power of data and language. We are a group of data enthusiasts, linguists, and software engineers who have embarked on a mission to explore the rich tapestry of insights embedded within the world of social media. Our journey began with a simple question: What can we learn from the millions of tweets shared every day? With a deep-seated belief in the transformative potential of data-driven knowledge, we set out to develop cutting-edge tools and algorithms to sift through the Twitterverse and decode its messages. Through relentless dedication and innovative solutions, we have harnessed the complexity of social media data, empowering businesses, researchers, and individuals to extract valuable insights and make informed decisions.</p>
+            <p style="text-align:left; display: flex; justify-content: center;"> Our commitment to the Tweets Analyzer Project extends beyond technical expertise. We are driven by a shared vision of a world where information is harnessed for good, and where the power of language and data is accessible to all. Through our work, we aim to demystify the ever-evolving landscape of social media, offering clarity and understanding to those who seek it. With every line of code we write and every analysis we perform, we strive to shed light on the trends, sentiments, and stories hidden within tweets. Join us on this exciting journey as we continue to innovate, analyze, and empower, making the vast world of Twitter data an open book for all who wish to read it.</p>
+        </div>
+        <!-- Image Container -->
+        <div class="col-md-6">
+            <img src="{% static 'Images/about_image.jpg' %}" alt="About Us" class="about-img img-fluid" width="52%" height="47%">
+        </div>
+    </div>
+</div>
+
+
+{% comment %} </section> {% endcomment %}
+
+<!-- About US Sction END -->
+
+
+<!-- Call to Action Section START -->
+
+<!-- Call to Action Section START -->
+
+<section class="container-fluid section calltoaction bg-success" style="height: 45vh; " id="services" > 
+    
+        <div class="row h-100">
+            <!-- First Div: 6 Columns for Text -->
+            <div class="col-md-6 text-left d-flex align-items-center">
+                <div>
+                    <h2 style="color:white; margin-left:19px;">Our Services</h2>
+                    <p style="color:white; text-align:left; margin-left:20px; margin-top:20px;">
+                        Experience Tweets Analyzer your data-driven Twitter insights hub. We decode the language of social media, offering actionable Twitterverse insights. Click 'Call To Action' and embark on a journey of discovery through the power of Twitter data analysis.
+                    </p>
+                </div>
+            </div>
+            <!-- Second Div: 3 Columns for Call to Action Button -->
+            <div class="col-md-3 text-center d-flex align-items-center call-to-action-container">
+                <a href="{% url 'signin'%}" class="btn btn-outline-light btn-lg calltoaction-btn" style="margin-top:30px; margin-left:136px; width:159px">
+                    Call to Action
+                </a>
+            </div>
+        </div>
+</section>
+
+<!-- CAll to Action Section END -->
+
+
+<!-- Our Team  Section START -->
+
+<section  id="team" class="container-fluid section">
+
+    <!-- Our Team Section -->
+<div class="container text-center mt-5">
+    <h2>Our Team</h2><br><br>
+    <div class="row">
+        <!-- Team Member 1 -->
+        <div class="col-md-6" >
+            <div class="card team-card">
+                <img src="{% static 'Images/Hassan.jpeg' %}" class="card-img-top rounded-circle team-profile" alt="Team Member 1">
+                <div class="card-body">
+                    <h5 class="card-title">Muhammad Hassan</h5>
+                    <p class="card-text">Front End Web Developement & Documentation Desinger</p>
+                    <p class="card-text">Good command in Front End Web and UX designs. ALso good command in Documentation Desiging</p>
+                    <div class="social-icons mt-5 mb-3">
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="twitter-handle "><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="facebook-handle"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="instagram-handle"><path d="M224,202.66A53.34,53.34,0,1,0,277.36,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.41-30.41c-21-8.29-71-6.43-94.3-6.43s-73.25-1.93-94.31,6.43a54,54,0,0,0-30.41,30.41c-8.28,21-6.43,71.05-6.43,94.33S91,329.26,99.32,350.33a54,54,0,0,0,30.41,30.41c21,8.29,71,6.43,94.31,6.43s73.24,1.93,94.3-6.43a54,54,0,0,0,30.41-30.41c8.35-21,6.43-71.05,6.43-94.33S357.1,182.74,348.75,161.67ZM224,338a82,82,0,1,1,82-82A81.9,81.9,0,0,1,224,338Zm85.38-148.3a19.14,19.14,0,1,1,19.13-19.14A19.1,19.1,0,0,1,309.42,189.74ZM400,32H48A48,48,0,0,0,0,80V432a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V80A48,48,0,0,0,400,32ZM382.88,322c-1.29,25.63-7.14,48.34-25.85,67s-41.4,24.63-67,25.85c-26.41,1.49-105.59,1.49-132,0-25.63-1.29-48.26-7.15-67-25.85s-24.63-41.42-25.85-67c-1.49-26.42-1.49-105.61,0-132,1.29-25.63,7.07-48.34,25.85-67s41.47-24.56,67-25.78c26.41-1.49,105.59-1.49,132,0,25.63,1.29,48.33,7.15,67,25.85s24.63,41.42,25.85,67.05C384.37,216.44,384.37,295.56,382.88,322Z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="linkedin-handle"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512" class="skype-handle" ><path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 2 -->
+        <div class="col-md-6">
+            <div class="card team-card">
+                <img src="{% static 'Images/Abdullah.jpeg' %}" class="card-img-top rounded-circle team-profile" alt="Team Member 2">
+                <div class="card-body">
+                    <h5 class="card-title">Abdullah Mouizz</h5>
+                    <p class="card-text">Backend End Developement and Machine Learning </p>
+                    <p class="card-text">Good command in Django Framework to integrate Machine learning model and other module with Front End </p>
+                    <div class="my-icons social-icons mt-5 mb-3">
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="twitter-handle"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="facebook-handle"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="instagram-handle"><path d="M224,202.66A53.34,53.34,0,1,0,277.36,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.41-30.41c-21-8.29-71-6.43-94.3-6.43s-73.25-1.93-94.31,6.43a54,54,0,0,0-30.41,30.41c-8.28,21-6.43,71.05-6.43,94.33S91,329.26,99.32,350.33a54,54,0,0,0,30.41,30.41c21,8.29,71,6.43,94.31,6.43s73.24,1.93,94.3-6.43a54,54,0,0,0,30.41-30.41c8.35-21,6.43-71.05,6.43-94.33S357.1,182.74,348.75,161.67ZM224,338a82,82,0,1,1,82-82A81.9,81.9,0,0,1,224,338Zm85.38-148.3a19.14,19.14,0,1,1,19.13-19.14A19.1,19.1,0,0,1,309.42,189.74ZM400,32H48A48,48,0,0,0,0,80V432a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V80A48,48,0,0,0,400,32ZM382.88,322c-1.29,25.63-7.14,48.34-25.85,67s-41.4,24.63-67,25.85c-26.41,1.49-105.59,1.49-132,0-25.63-1.29-48.26-7.15-67-25.85s-24.63-41.42-25.85-67c-1.49-26.42-1.49-105.61,0-132,1.29-25.63,7.07-48.34,25.85-67s41.47-24.56,67-25.78c26.41-1.49,105.59-1.49,132,0,25.63,1.29,48.33,7.15,67,25.85s24.63,41.42,25.85,67.05C384.37,216.44,384.37,295.56,382.88,322Z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="linkedin-handle"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512" class="skype-handle"><path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+
+
+<!-- our Team Section END -->
+
+{% comment %} 
+<!-- Contact Section START -->
+
+<section id="contact" class="py-5 container-fluid section" >
+    <div class="container-fluid text-center" style="background-color:green;">
+        <h2>Contact</h2>
+        <div class="row">
+            <div class="col-md-6" style="margin-top:55px; margin-left:-60px;">
+                <div class="info">
+                    <i class="fas fa-map-marker-alt fa-2x"></i>
+                    <p>123 Main St<br>City, Country 12345</p>
+                </div>
+                <div class="info">
+                    <i class="far fa-envelope fa-2x"></i>
+                    <p>info@example.com</p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-phone fa-2x"></i>
+                    <p>+1 (123) 456-7890</p>
+                </div>
+                <div id="map" class="mt-4" style="height: 300px;"></div>
+            </div>
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group" style="margin-top:10px;">
+                        <input type="text" class="form-control" placeholder="Name" required>
+                    </div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <input type="text" class="form-control" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <textarea class="form-control" rows="4" placeholder="Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success" style="margin-top:10px;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Contact Section END --> {% endcomment %}
+<section class="Contact-CSS">
+<div class="container-fluid contact-form ">
+    <div class="contact-image">
+        <img src="{% static 'Icons/callicon.jpg' %}" alt="Call_icon"/>
+    </div>
+    <form method="POST" action="/usermessage">
+        {% csrf_token %}
+        <h3>Drop Us a Message</h3>
+       <div class="row">
+            <div class="col-md-6">
+                <div class="form-group contact-form-feilds">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name *" value="" required />
+                </div>
+                <div class="form-group contact-form-feilds">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email *" value="" required/>
+                </div>
+                <div class="form-group contact-form-feilds">
+                    <input type="phonenumber" name="phonenumber" class="form-control" placeholder="Your Phone Number *" value="" required/>
+                </div>
+                <div class="form-group contact-form-button">
+                    <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group contact-form-feilds">
+                    <textarea type= "text" name="Message" class="form-control" placeholder="Your Message *" style="width: 100%; height: 200px;" required></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</section>
+
+<script>
+        // Function to toggle the sticky class on the navbar when scrolling
+        window.onscroll = function() {
+            if (window.pageYOffset > 50) {
+                document.querySelector('.navbar').classList.add('sticky');
+            } else {
+                document.querySelector('.navbar').classList.remove('sticky');
+            }
+        };
+    </script>
+<!-- Footer section -->
+
+<footer class="footer "  style="background-color:#AED6F1;">
+    <div class="container text-center">
+        <!-- Logo -->
+        <img src="{% static 'Images/TwitterLogo.png' %}" alt="Logo" width="110" height="80">
+        <!-- Text -->
+        <p>Unlock insights by analyzing tweets with ease</p>
+        <!-- Social Media Icons -->
+        <div class="social-icons mt-4 mb-3">
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="twitter-handle"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z"/></svg></a>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="facebook-handle"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="instagram-handle"><path d="M224,202.66A53.34,53.34,0,1,0,277.36,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.41-30.41c-21-8.29-71-6.43-94.3-6.43s-73.25-1.93-94.31,6.43a54,54,0,0,0-30.41,30.41c-8.28,21-6.43,71.05-6.43,94.33S91,329.26,99.32,350.33a54,54,0,0,0,30.41,30.41c21,8.29,71,6.43,94.31,6.43s73.24,1.93,94.3-6.43a54,54,0,0,0,30.41-30.41c8.35-21,6.43-71.05,6.43-94.33S357.1,182.74,348.75,161.67ZM224,338a82,82,0,1,1,82-82A81.9,81.9,0,0,1,224,338Zm85.38-148.3a19.14,19.14,0,1,1,19.13-19.14A19.1,19.1,0,0,1,309.42,189.74ZM400,32H48A48,48,0,0,0,0,80V432a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V80A48,48,0,0,0,400,32ZM382.88,322c-1.29,25.63-7.14,48.34-25.85,67s-41.4,24.63-67,25.85c-26.41,1.49-105.59,1.49-132,0-25.63-1.29-48.26-7.15-67-25.85s-24.63-41.42-25.85-67c-1.49-26.42-1.49-105.61,0-132,1.29-25.63,7.07-48.34,25.85-67s41.47-24.56,67-25.78c26.41-1.49,105.59-1.49,132,0,25.63,1.29,48.33,7.15,67,25.85s24.63,41.42,25.85,67.05C384.37,216.44,384.37,295.56,382.88,322Z"/></svg></a>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="linkedin-handle"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512" class="skype-handle"><path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg></a>
+        </div>
+        <!-- Copyright Text -->
+        <p class="mt-3 mb-3">TweetLyzer&copy; Reserved 2023</p><br>
+    </div>
+</footer>
+
+        <!-- Footer Section END -->
+
+        <script>
+            $(document).ready(function() {
+                // Add smooth scrolling to all links
+                $("a").on('click', function(event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+                        // Store hash
+                        var hash = this.hash;
+                        // Using jQuery's animate() method to add smooth page scroll
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 800, function(){
+                            // Add hash (#) to URL when done scrolling
+                            window.location.hash = hash;
+                        });
+                    } // End if
+                });
+            });
+        </script>
+ 
+    <script>
+        // Add script for automatic scrolling
+        $(document).ready(function() {
+            $('#imageCarousel').carousel({
+                interval: 1000  // Change slide every 3 seconds (3000 milliseconds)
+            });
+        });
+    </script>
+
+    <!-- Include Bootstrap JS (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script>
+        // Show the back-to-top button when you scroll down 20px from the top
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 20) {
+                $('#scrollToTop').fadeIn();
+            } else {
+                $('#scrollToTop').fadeOut();
+            }
+        });
+    
+        // When the user clicks on the button, scroll to the top of the document
+        $('#scrollToTop').click(function () {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 1000); // Adjust the duration (1000ms = 1 second) for scrolling speed
+        });
+    </script>
+
+    <button id="scrollToTop" class="btn btn-primary back-to-top" title="Go to top">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+    
+
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> {% endcomment %}
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;<span>
+        </button>
+    </div>
+    {% endfor %}
+
+</body>
+
+</html>

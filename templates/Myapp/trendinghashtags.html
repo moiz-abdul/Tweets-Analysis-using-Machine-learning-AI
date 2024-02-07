@@ -1,0 +1,174 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keywords and Hashtags</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Add custom CSS for styling -->
+
+    <style>
+        body {
+            background-color: #AED6F1;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px #2874A6;
+        }
+
+        .keyword-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .keyword-list-item {
+            margin-bottom: 20px;
+        }
+
+        .keyword-list-item a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .keyword-list-item a:hover {
+            color: #17BF63; /* Green color on hover */
+        }
+
+        .hashtag-list {
+            list-style: none;
+            padding: 0;
+            margin-left: 20px;
+        }
+
+        .hashtag-list-item {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'Images/TwitterLogo.png' %}" alt="Logo" width="70" height="40">
+            </a>
+            <!-- Add User Account Dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{username}}
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'changepassword' %}">Change Password</a></li>
+                  <li><a class="dropdown-item" href="{% url 'faqs' %}">FAQ's</a></li>
+                  {% comment %} <li><a class="dropdown-item" href="#">Contact Us</a></li> {% endcomment %}
+                  <a class="btn btn-primary" style="margin-left: 12px; margin-top: 3px;" href="{% url 'signout' %}">Sign Out</a>
+                </ul>
+              </div>
+        </div>
+    </nav><br> 
+    
+    <div class="container">
+        <h2 class="text-center mb-4">Keywords and Hashtags</h2>
+        <ul class="keyword-list">
+            <li class="keyword-list-item">
+                
+                <h4><a href="{% url 'hashtag_tweets' %}?key=Election">Election</a></h4>
+                
+                <ul class="hashtag-list">
+                    <li class="list-group-item hashtag-list-item">
+                        <a href="{% url 'hashtag_tweets' %}?key=%23PoliticalCampaign">#PoliticalCampaign</a>
+                    </li>
+
+                    <li class="list-group-item hashtag-list-item">
+                        <a href="{% url 'hashtag_tweets' %}?key=%23Vote">#Vote</a>
+                    </li>
+
+                    <li class="list-group-item hashtag-list-item">
+                        <a href="{% url 'hashtag_tweets' %}?key=%23Election2023">#Election2023</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Government</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#GovernmentPolicy</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#PublicService</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#GovernmentAccountability</a></li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Politics</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#PoliticalNews</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#PoliticalAnalysis</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#WorldPolitics</a></li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Political Parties</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#RepublicanParty</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#DemocraticParty</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#ThirdParty</a></li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Political Activism</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#Activism</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#PoliticalProtest</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#SocialJustice</a></li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Political Debates</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#DebateNight</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#PoliticalDebates</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#CandidateDebate</a></li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Political Scandals</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#Corruption</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#PoliticalScandals</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#ScandalInvestigation</a></li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Political Opinion</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#PublicOpinion</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#PoliticalViews</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#PoliticalOpinion</a></li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Political Movements</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#PoliticalMovements</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#AdvocacyGroups</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#SocialChange</a></li>
+                </ul>
+            </li>
+            <li class="keyword-list-item">
+                <h4><a href="https://twitter.com/search?q=keyword2" target="_blank">Political Issues</a></h4>
+                <ul class="hashtag-list">
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag4" target="_blank">#TopPoliticalTopics</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag5" target="_blank">#PoliticalIssues</a></li>
+                    <li class="hashtag-list-item"><a href="https://twitter.com/search?q=%23hashtag6" target="_blank">#CurrentPoliticalDebates</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

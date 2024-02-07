@@ -1,0 +1,157 @@
+
+
+# FORGOT PASSWORD FUNCTION 
+
+def forgetpassword(request):
+
+    if request.method == "POST":
+        email = request.POST['email']
+        
+        try:
+            UserEmail = Uzerlogin.objects.get(Email = email)
+            
+     
+            user_Otp = random.randint(100000,999999)
+            expiration_time = timedelta(minutes=5)
+
+            otp_instance = PasswordResetOTP.objects.create(
+                User_login = UserEmail,
+                OTP = user_Otp,
+                OTP_create = timezone.now(),
+                OTP_expire = timezone.now() + expiration_time     
+            )
+            """
+            Subject = "Password Reset OTP"
+            Message = f"<p>Please enter the OTP from you Email , To reset your password ! </p>"
+            From_Email = settings.EMAIL_HOST_USER
+            recipient_list = [UserEmail.Email]
+
+            send_mail(Subject,Message,From_Email,recipient_list)
+            request.session['Reset_email '] = email
+
+            """
+            messages.success(request,'OTP send to your Email, Plase enter OTP to reset your password',user_Otp)
+            redirect('OTP')
+            
+        except  Uzerlogin.DoesNotExist:
+            messages.error(request, ' Sorry account with that email does not exist')
+
+    return render(request,"Myapp/forgetpassword.html")
+
+
+# FORGOT PASSWORD FUNCTION END 
+
+
+
+# OTP FUNCTION 
+
+
+def OTP(request):
+    #email = request.session.get('Reset_email')
+    if request.method == 'POST':
+
+        OTP = request.POST['OTP']
+
+        if not OTP:
+            print("Enter OTP from Email ! ")
+        else:
+            try:
+                user = Uzerlogin.objects.get(Email = email)  
+                otp_instance = PasswordResetOTP.objects.filter(Uzerlogin=user).latest('Start_at')
+
+                if otp_instance.is_expired():
+                    return HttpResponse("OTP has expired , please enter the new one !")
+                
+                else:
+                    if str(OTP) == str(otp_instance.OTP):
+                        redirect('ChangePassword')
+                    else:
+                        return HttpResponse("Invalid OTP, Please enter again !")
+                    
+            except Uzerlogin.DoesNotExist:
+                return HttpResponse("Invalid Email address ! ")
+            
+
+    return render(request,"Myapp/OTP.html")
+
+
+# OTP FUNCTION END
+
+
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+
+
+Tweet Text display CODE LINES in Selenium 
+
+
+#Tweet_text = tweet_now.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div/section/div/div/div[1]/div/div/article/div/div/div[2]/div[2]/div[2]')
+    Tweet_text = tweet_now.find_element(By.CSS_SELECTOR,"div[data-testid='tweetText']")
+    print(f"Tweet Text is : {Tweet_text.text}")
+
+
+
+
+
+def get_tweet_text_with_emojis(Tweet_text):
+        """Gets the tweet text with emojis displayed in the same order as they appear in the tweet.
+        Args:
+            tweet_html: The HTML of the tweet.
+        Returns:
+            The tweet text with emojis displayed in the same order as they appear in the tweet.
+        """
+        # Find emojis within the tweet text.
+        emojis = re.findall(r'<img[^>]+alt="([^"]+)"[^>]+>', Tweet_text)
+        # Split the tweet text into parts based on emojis.
+        parts = re.split(r'<img[^>]+alt="([^"]+)"[^>]+>', Tweet_text)
+        # Iterate through the parts of the tweet text and emojis together, printing them in the desired order.
+        tweet_text_with_emojis = ""
+        for part, emoji in zip(parts, emojis):
+            tweet_text_with_emojis += part + emoji
+        return tweet_text_with_emojis
+
+    tweet_text_with_emojis = get_tweet_text_with_emojis(Tweet_text)
+    print(tweet_text_with_emojis)
+
+
+
+
+
+Tweet_photos = tweet_now.find_elements(By.CSS_SELECTOR,"div[data-testid='tweetPhoto']")
+    for Tweet_photo_index , Tweet_photo_now in enumerate(Tweet_photos[:3]):
+        Tweet_photo_now = Tweet_photo_now.find_element(By.CSS_SELECTOR,"img")
+        print(f"Tweet photo is index NO in {Tweet_photo_index + 1 } : {Tweet_photo_now.get_attribute('src')}")
+
+
+ Tweet_video = tweet_now.find_elements(By.CSS_SELECTOR,"div[data-testid='videoPlayer']")
+    for Tweet_video_index , Tweet_video_now in enumerate(Tweet_video[:3]):
+        Tweet_video_now = Tweet_video_now.find_element(By.CSS_SELECTOR,"video")
+        Tweet_Video = Tweet_video_now.get_attribute('poster')
+    print(f"Video is : {Tweet_video_index + 1 } : {Tweet_Video}")
+
+
+
+
+-------------------------------------
+----------------------------------------
+
+
+WEB page display Code TWeet Tweet_photos
+
+Tweet_photos = tweet_now.find_elements(By.CSS_SELECTOR,"div[data-testid='tweetPhoto']")
+        for Tweet_photo_index , Tweet_photo_now in enumerate(Tweet_photos[:3]):
+            Tweet_photo_now = Tweet_photo_now.find_element(By.CSS_SELECTOR,"img")
+            Tweet_Photo = Tweet_photo_now.get_attribute('src')
+            #print(f"Tweet photo is index NO in {Tweet_photo_index + 1 } : {Tweet_photo_now.get_attribute('src')}")
+
+
+-------------------------------------------
+-------------------------------------------
+
+
+
+
+    
+

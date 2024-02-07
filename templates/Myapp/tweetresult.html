@@ -1,0 +1,275 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweets Result</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #AED6F1;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px #2874A6;
+        }
+
+        .keyword-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .keyword-list-item {
+            margin-bottom: 20px;
+        }
+
+        .keyword-list-item a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .keyword-list-item a:hover {
+            color: #17BF63; /* Green color on hover */
+        }
+
+        .hashtag-list {
+            list-style: none;
+            padding: 0;
+            margin-left: 20px;
+        }
+
+        .hashtag-list-item {
+            margin-bottom: 5px;
+        }
+
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px #2874A6;
+            max-width: 400px;
+        }
+
+        .media img {
+            border: 3px solid #3498db;
+        }
+
+        .media-body {
+            text-align: left;
+        }
+
+        h5 {
+            color: #3498db;
+        }
+
+        .text-muted {
+            color: #888;
+        }
+
+        i.fas.fa-check-circle {
+            color: #17bf63;
+            margin-left: 5px;
+        }
+
+        p {
+            margin: 20px 0;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+        }
+
+        .d-flex.justify-content-between {
+            margin-top: 20px;
+        }
+
+        i {
+            font-size: 18px;
+        }
+
+        .text-danger {
+            color: #ff6b6b;
+        }
+
+        .text-success {
+            color: #17bf63;
+        }
+
+        .text-primary {
+            color: #3498db;
+        }
+
+        .text-secondary {
+            color: #888;
+        }
+        .card-item
+        {
+          margin-left: 32%;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px #2874A6;
+        }
+
+        .accuracy-bar-real
+        {
+            width: 500px;
+            height: 50px;
+            margin-top: 30px;
+            margin-left: 28%;
+            background-color: #E5E8E8 ;
+            box-shadow: 0 0 25px #1E8449;
+            font-size: 20px;
+        }
+
+        .accuracy-bar-fake
+        {
+            width: 500px;
+            height: 50px;
+            margin-top: 30px;
+            margin-left: 28%;
+            background-color: #E5E8E8 ;
+            box-shadow: 0 0 25px #7D212E;
+            font-size: 20px;
+        }
+
+        .progress-bar-success
+        {
+            background-color: #17bf63;
+        }
+        .label-tag
+        {
+            margin-left: 43%;
+            margin-top: 30px;
+            width: 15%;
+            font-size: 30px;
+            background-color: #93d6b1 !important;
+            border: 2px solid green;
+            color: rgb(0, 71, 0) !important;
+        }
+        #labelfake
+        {
+            color: red !important;
+            background-color: lightcoral !important; 
+            border: 2px solid red; 
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'Images/TwitterLogo.png' %}" alt="Logo" width="70" height="40">
+            </a>
+            <!-- Add User Account Dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Twitter User
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'changepassword' %}">Change Password</a></li>
+                  <li><a class="dropdown-item" href="{% url 'faqs' %}">FAQ's</a></li>
+                  {% comment %} <li><a class="dropdown-item" href="#">Contact Us</a></li> {% endcomment %}
+                  <a class="btn btn-primary" style="margin-left: 12px; margin-top: 3px;" href="{% url 'signout' %}">Sign Out</a>
+                </ul>
+              </div>
+        </div>
+    </nav><br> 
+    <!--
+    <div class="container">
+        <h2 class="text-center mb-4">Related Tweets </h2>
+        
+        <div class="card mt-3 ml-3 card-item" style="width: 25rem;">
+            <img src="/Indian.png" class="card-img-top" alt="Post Image">
+            <div class="card-body">
+              <div class="row">
+              <div class="col-4"><img src="/Abdul.jpeg" class="mr-3 rounded-circle" alt="Profile Image" width="64" height="64"></div>
+              <div class="col-8  mt-2">
+                <div class="row">
+                  <div class="col-12">
+              <h5 class="card-title">Abdullah Moiz</h5></div>
+              <div class="col-8">
+                <span class="text-muted">@abdullah</span>
+                <span class="fas fa-check-circle text-primary ml-2"></span> 
+              </div>
+            </div>
+              </div>
+              
+            </div>
+            
+              <p class="card-text">The biggest inflated balloon in Indian politics? THREAD</p>
+              <div class="d-flex justify-content-between mt-3">
+                <div>
+                    <i class="fas fa-heart text-danger"></i>100
+                </div>
+                <div>
+                    <i class="fas fa-retweet text-success"></i>50
+                </div>
+                <div>
+                    <i class="fas fa-comment text-primary"></i>30
+                </div>
+                <div>
+                    <i class="fas fa-eye text-secondary"></i>500
+                </div>
+            </div>
+            </div>
+          </div>
+    </div>  -->
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4"> Tweet Report</h2>
+        
+    <!--<div class="progress accuracy-bar">
+
+       
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+        aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+          80% REAL
+        </div>  
+      </div>  -->
+      {% if percentage_score == "89%"%}
+
+            <div class="progress accuracy-bar-real">
+                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"
+                    style="width: 89%; background-color: #82E0AA;">
+                    {{ percentage_score }}
+                </div>
+            </div>
+
+       {% elif percentage_score == "17%" %}
+            <div class="progress accuracy-bar-fake">
+                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                    style="width: 17%; background-color: red;" >
+                    {{ percentage_score }}
+                </div>
+            </div>
+        {% endif %}
+    
+      {% if label == "Real" %}
+            <span class="badge badge-light bg-light shadow-lg p-3 mb-3 bg-white rounded text-dark label-tag" style="color: green; background-color: lightgreen;">{{ label }}</span>
+      {% elif label == "Fake" %}
+            <span class="badge badge-light bg-light shadow-lg p-3 mb-3 bg-white rounded text-dark label-tag" id = "labelfake" >{{ label }}</span>
+      {% endif %}
+    </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

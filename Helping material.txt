@@ -1,0 +1,12 @@
+1) OTP Front End Code : https://codepen.io/sandhika/pen/NWqJKbq 
+2) Email OTP send Code : https://codepen.io/abhndv/pen/rNebjGo 
+
+
+
+
+    <!--
+     {% else %}
+    <button type="submit"> <a href="/signup">Sign up </a> </button>
+    <button type="submit"> <a href="/signin">Sign in </a> </button>
+    {% endif %}
+    -->

@@ -1,0 +1,258 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweets</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #AED6F1;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .keyword-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .keyword-list-item {
+            margin-bottom: 20px;
+        }
+
+        .keyword-list-item a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .keyword-list-item a:hover {
+            color: #17BF63; /* Green color on hover */
+        }
+
+        .hashtag-list {
+            list-style: none;
+            padding: 0;
+            margin-left: 20px;
+        }
+
+        .hashtag-list-item {
+            margin-bottom: 5px;
+        }
+
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px #2874A6;
+            max-width: 400px;
+        }
+
+        .media img {
+            border: 3px solid #3498db;
+        }
+
+        .media-body {
+            text-align: left;
+        }
+
+        h5 {
+            color: #3498db;
+        }
+
+        .text-muted {
+            color: #888;
+        }
+
+        i.fas.fa-check-circle {
+            color: #17bf63;
+            margin-left: 5px;
+        }
+
+        p {
+            margin: 20px 0;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+        }
+
+        .d-flex.justify-content-between {
+            margin-top: 20px;
+        }
+
+        i {
+            font-size: 18px;
+        }
+
+        .text-danger {
+            color: #ff6b6b;
+        }
+
+        .text-success {
+            color: #17bf63;
+        }
+
+        .text-primary {
+            color: #3498db;
+        }
+
+        .text-secondary {
+            color: #888;
+        }
+        .card-item
+        {
+          margin-left: 32%;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px #2874A6;
+        }
+
+        .hiddenbutton
+        {
+            background: white !important;
+            color: white !important;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'Images/TwitterLogo.png' %}" alt="Logo" width="70" height="40">
+            </a>
+            <!-- Add User Account Dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Twitter User
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'changepassword' %}">Change Password</a></li>
+                    <li><a class="dropdown-item" href="{% url 'faqs' %}">FAQ's</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="#">Contact Us</a></li> {% endcomment %}
+                    <a class="btn btn-primary" style="margin-left: 12px; margin-top: 3px;" href="{% url 'signout' %}">Sign Out</a>
+                </ul>
+              </div>
+        </div>
+    </nav><br> 
+    
+    <div class="container">
+        <h2 class="text-center mb-4">Related Tweets </h2>
+
+        <form id="predictForm" method="POST" action="{% url 'tweetpredict' %}">
+            {% csrf_token %}
+            <input type="hidden" name="tweet_text" id="tweet_text">
+            <input type="hidden" name="likes_count" id="likes_count">
+            <input type="hidden" name="retweets_count" id="retweets_count">
+            <input type="hidden" name="comment_count" id="comment_count">
+            <input type="hidden" name="views_count" id="views_count">
+            <button type="submit" class="btn btn-primary hiddenbutton">Predict Tweet</button>
+        </form>
+
+        {% for tweet in tweets_for_hashtag %}
+        <div class="card mt-3 ml-3 card-item" style="width: 25rem;">
+            <ul>
+                {% if tweet.Tweet_Media.Media_Type == "Photo" %}
+                    <li><img src="{{ tweet.Tweet_Media.Media_URL }}" alt="Tweet Photo" class="card-img-top"></li>
+                {% elif tweet.Tweet_Media.Media_Type == "Video" %}
+                    <li><img  src="{{ tweet.Tweet_Media.Media_URL }}" alt="Tweet Video Poster" class="card-img-top" ></li>
+                {% else %}
+                    <li>No media available</li>
+                {% endif %}
+            </ul>
+
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-4">
+                        <img src="{{ tweet.User_Profile_Image_URL }}" alt="Profile Image" class="profile-image mr-3 rounded-circle" width="64" height="64">
+                    </div>
+
+                    <div class="col-8  mt-2">
+                        <div class="row">
+                          <div class="col-12">
+                            <div><h5 class="card-title"> 
+                                {{ tweet.User_Name }} </h5></div>
+                                <div class="col-8">
+                                    <span class="fas fa-check-circle text-primary ml-2"></span> </div>
+                                </div>
+                            </div>
+                              </div>
+
+                              <p>{{ tweet.Tweet_Time }}</p>
+                              <p class="card-text" id="tweetText">{{ tweet.Tweet_Text_with_Emojis }}</p>
+                            
+                              <div class="d-flex justify-content-between mt-3">
+                                <div>
+                                    <i class="fas fa-comment text-primary"></i><p id="comments">{{ tweet.Comments }}</p>
+                                </div>
+                                
+                                <div>
+                                    <i class="fas fa-retweet text-success"></i><p id="retweets">{{ tweet.Retweets }}</p>
+                                </div>
+
+                                <div>
+                                    <i class="fas fa-heart text-danger"></i><p id="likes">{{ tweet.Likes }}</p>
+                                </div>
+                                  
+                                <div>
+                                    <i class="fas fa-eye text-secondary"></i><p id="views">{{ tweet.Views }}</p>
+                                </div>
+
+                                <!-- Predict button -->
+
+                                <button class="btn btn-primary" onclick="setValuesAndSubmit()">Predict Tweet</button>
+                                
+                            </div>
+                            </div>
+                          </div>
+                    
+                          
+                    </div>
+                    
+        {% endfor %}
+        
+        <script>
+            function setValuesAndSubmit() {
+                // Get the values from HTML elements
+                var tweetText = document.getElementById('tweetText').textContent.trim();
+                var likesCount = parseInt(document.getElementById('likes').textContent.trim()) || 0;
+                var retweetsCount = parseInt(document.getElementById('retweets').textContent.trim()) || 0;
+                var commentCount = parseInt(document.getElementById('comments').textContent.trim()) || 0;
+                var viewsCount = parseInt(document.getElementById('views').textContent.trim()) || 0;
+            
+                // Assign values to hidden input fields
+                document.getElementById('tweet_text').value = tweetText;
+                document.getElementById('likes_count').value = likesCount;
+                document.getElementById('retweets_count').value = retweetsCount;
+                document.getElementById('comment_count').value = commentCount;
+                document.getElementById('views_count').value = viewsCount;
+            
+                // Submit the form
+                document.getElementById('predictForm').submit();
+            }
+            
+        </script>
+            
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>
